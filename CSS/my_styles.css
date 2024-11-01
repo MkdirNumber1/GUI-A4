@@ -21,6 +21,14 @@ body {
 }
 
 
+/* style the form */
+#dataForm {
+    display: flex;              /* Use flexbox for the form */
+    flex-direction: column;     /* Stack items vertically */
+    align-items: flex-start;   /* Align items to the start */
+}
+
+
 /* sets the boarder, margins and width for the multiplication table */
 table {
     border-collapse: collapse; /* merges table borders into a single border */
@@ -28,8 +36,10 @@ table {
     margin-top: 80px;
     width: 70%;
 }
+
+
 label {
-    margin-right: 20px; /* Space between label and input */
+    padding-bottom: 5px;
 }
 
 
@@ -82,6 +92,8 @@ tr:nth-child(odd) {
     width: 1000px;          /* Set a fixed width for the container */
     height: 600px;         /* Set a fixed height for the container */
     overflow: auto;        /* Add scrollbars when content overflows */
+    margin: 40px;
+
 }
 
 /* make nice footer */

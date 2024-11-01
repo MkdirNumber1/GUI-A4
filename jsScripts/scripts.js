@@ -30,6 +30,23 @@ document.getElementById("dataForm").addEventListener("submit", function (event) 
     const minRowValue = parseFloat(document.getElementById('minRowValue').value);
     const maxRowValue = parseFloat(document.getElementById('maxRowValue').value);
 
+
+
+    // check if any fields are empty
+    if (!colmNumStart) {
+        document.getElementById('errorColmNumStart').textContent = "Starting column number is required.";
+    }
+    if (!colmNumEnd) {
+        document.getElementById('errorColmNumEnd').textContent = "Ending column number is required.";
+    }
+    if (!minRowValue) {
+        document.getElementById('errorMinRowValue').textContent = "Starting row number is required.";
+    }
+    if (!maxRowValue) {
+        document.getElementById('errorMaxRowValue').textContent = "Ending row number is required.";
+    }
+    
+    
     
     // check if values are numbers
     if (isNaN(colmNumStart) || isNaN(colmNumEnd) || isNaN(minRowValue) || isNaN(maxRowValue)) {
