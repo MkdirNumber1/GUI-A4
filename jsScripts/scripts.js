@@ -10,6 +10,61 @@
 
 
 
+
+
+$(document).ready(function () {
+    $("#dataForm").validate({
+        rules: {
+            colmNumStart: {
+                required: true,
+                number: true,
+                min: 1
+            },
+            colmNumEnd: {
+                required: true,
+                number: true,
+                min: 1
+            },
+            minRowValue: {
+                required: true,
+                number: true,
+                min: 1
+            },
+            maxRowValue: {
+                required: true,
+                number: true,
+                min: 1
+            }
+        },
+        messages: {
+            colmNumStart: {
+                required: "Starting column number is required.",
+                number: "Please enter a valid number.",
+                min: "Please enter a positive number."
+            },
+            colmNumEnd: {
+                required: "Ending column number is required.",
+                number: "Please enter a valid number.",
+                min: "Please enter a positive number."
+            },
+            minRowValue: {
+                required: "Starting row number is required.",
+                number: "Please enter a valid number.",
+                min: "Please enter a positive number."
+            },
+            maxRowValue: {
+                required: "Ending row number is required.",
+                number: "Please enter a valid number.",
+                min: "Please enter a positive number."
+            }
+        },
+    });
+});
+
+
+
+
+
 // Select the id of "dataForm" then add the eventListener
 // The eventListener waits until the id of "submit" has been activated and then calls function
 document.getElementById("dataForm").addEventListener("submit", function (event) {
@@ -44,32 +99,17 @@ document.getElementById("dataForm").addEventListener("submit", function (event) 
     document.getElementById('errorMinRowValue').textContent = '';
     document.getElementById('errorMaxRowValue').textContent = '';
 
-    // **************************************************************  Lambda function section
-    // check if entered inputs are within the allowable range 
-    // set flag to false if inputs are not within valid range
-    // LAMBDA EXPRESSION FOR FUN
-    // excepts value and id as parameters then checks if value is in the bounds if not return false
-    // if input meets bounds return true
-    const validateInput = (value, errorId) => {
-        if (isNaN(value)) {
-            document.getElementById(errorId).textContent = "Must be a valid number.";
-            return false;
-        }
-        if (value < -50 || value > 50) {
-            document.getElementById(errorId).textContent = "Must be between -50 and 50.";
-            return false;
-        }
-        return true;
-    };
 
     const inputs = [
-        { value: colmNumStart, errorId: 'errorColmNumStart' },
-        { value: colmNumEnd, errorId: 'errorColmNumEnd' },
-        { value: minRowValue, errorId: 'errorMinRowValue' },
-        { value: maxRowValue, errorId: 'errorMaxRowValue' },
+        {value: colmNumStart, errorId: 'errorColmNumStart'},
+        {value: colmNumEnd, errorId: 'errorColmNumEnd'},
+        {value: minRowValue, errorId: 'errorMinRowValue'},
+        {value: maxRowValue, errorId: 'errorMaxRowValue'},
     ];
 
-    let valid = inputs.every(({ value, errorId }) => validateInput(value, errorId));
+
+    let valid = inputs.every(({value, errorId}) => validateInput(value, errorId));
+
 
     // check if the end values are smaller than the starting values
     // ex. colm start is 20 but column end is 10 won't work
@@ -95,6 +135,7 @@ document.getElementById("dataForm").addEventListener("submit", function (event) 
         generateTable(colmNumStart, colmNumEnd, minRowValue, maxRowValue);
     }
 });
+
 
 
 
@@ -154,6 +195,8 @@ function generateTable(colmNumStart, colmNumEnd, minRowValue, maxRowValue) {
     // Finally, append the table to the container
     tableContainer.appendChild(table); // Add the populated table to the container
 }
+
+
 
 
 
